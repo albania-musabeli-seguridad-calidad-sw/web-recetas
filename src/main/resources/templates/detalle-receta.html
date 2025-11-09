@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${receta.nombre()} + ' - Receta'">Receta</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+    <th:block th:replace="~{fragments/navbar :: navbar}"></th:block>
+
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <div class="card shadow-lg">
+                    <div class="card-header bg-primary text-white">
+                        <h2 class="mb-0" th:text="${receta.nombre()}">Tacos al Pastor</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="row g-3 mb-4">
+                            <div class="col-sm-4"><strong>Cocina:</strong></div>
+                            <div class="col-sm-8" th:text="${receta.tipoCocina()}"></div>
+                        </div>
+                        <div class="row g-3 mb-4">
+                            <div class="col-sm-4"><strong>País:</strong></div>
+                            <div class="col-sm-8" th:text="${receta.pais()}"></div>
+                        </div>
+                        <div class="row g-3 mb-4">
+                            <div class="col-sm-4"><strong>Dificultad:</strong></div>
+                            <div class="col-sm-8" th:text="${receta.dificultad()}"></div>
+                        </div>
+                        <div class="row g-3 mb-4">
+                            <div class="col-sm-4"><strong>Tiempo:</strong></div>
+                            <div class="col-sm-8" th:text="${receta.tiempo()} + ' minutos'"></div>
+                        </div>
+
+                        <hr class="my-4">
+
+                        <h4 class="text-primary">Ingredientes</h4>
+                        <p class="pre-wrap" th:text="${receta.ingredientes()}"></p>
+
+                        <h4 class="text-primary mt-4">Instrucciones</h4>
+                        <pre class="bg-light p-3 rounded border" th:text="${receta.instrucciones()}"></pre>
+
+                        <div class="mt-4">
+                            <div class="bg-secondary rounded d-flex align-items-center justify-content-center text-white" style="height: 300px;">
+                                <strong>Foto de la receta</strong>
+                            </div>
+                        </div>
+
+                        <div class="mt-4 d-flex gap-2">
+                            <a th:href="@{/}" class="btn btn-secondary">Volver al Inicio</a>
+                            <a th:href="@{/buscar}" class="btn btn-outline-primary">Buscar más</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        .pre-wrap { white-space: pre-wrap; }
+    </style>
+</body>
+</html>
