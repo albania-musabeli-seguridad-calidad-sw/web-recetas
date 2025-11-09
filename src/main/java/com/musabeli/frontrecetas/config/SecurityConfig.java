@@ -20,7 +20,7 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/", "/buscar", "/login", "/register", "/css/**", "/js/**", "/images/**").permitAll()
+                        .requestMatchers("/", "/buscar", "/login", "/register", "/css/**", "/js/**", "/images/**", "/img/**").permitAll()
                         .requestMatchers("/receta/**").authenticated()
                         .anyRequest().authenticated())
                 .logout(logout -> logout

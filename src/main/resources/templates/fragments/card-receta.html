@@ -1,28 +1,60 @@
-<div th:fragment="card(receta, authenticated)" 
-     th:classappend="${authenticated} ? 'card-clickable' : ''"
-     th:onclick="${authenticated} ? 'location.href=\'' + @{/receta/{id}(id=${receta.id()})} + '\'' : 'location.href=\'/login\''"
-     class="card h-100 border-0 shadow-sm" 
-     style="cursor: pointer; transition: all 0.2s ease;">
-     
-    <div class="bg-secondary card-img-top d-flex align-items-center justify-content-center text-white" style="height: 160px; border-radius: 0.5rem 0.5rem 0 0;">
-        <small class="text-center">Imagen de la receta</small>
+<div th:fragment="card(receta, authenticated, showImage)"
+     class="card h-100 border-0 shadow-sm position-relative"
+     style="overflow: hidden;">
+
+
+    <div th:if="${showImage} and ${receta.fotoUrl() != null}">
+        <img th:src="@{${receta.fotoUrl()}}" 
+             class="card-img-top" 
+             alt="Imagen de la receta"
+             style="height: 160px; object-fit: cover; border-radius: 0.5rem 0.5rem 0 0;">
     </div>
-    <div class="card-body d-flex flex-column p-3">
-        <h5 class="card-title mb-2" th:text="${receta.nombre()}">Tacos al Pastor</h5>
+
+    <div th:unless="${showImage} and ${receta.fotoUrl() != null}"
+         class="bg-secondary card-img-top d-flex align-items-center justify-content-center text-white"
+         style="height: 160px; border-radius: 0.5rem 0.5rem 0 0;">
+        <small class="text-center">Sin imagen</small>
+    </div>
+
+    <div th:if="${authenticated}"
+         th:onclick="|location.href='@{/receta/{id}(id=${receta.id()})}'|"
+         class="card-body d-flex flex-column p-3 card-clickable"
+         style="cursor: pointer;">
+        <h5 class="card-title mb-2 text-primary fw-bold" th:text="${receta.nombre()}"></h5>
         <p class="card-text text-muted small mb-2">
-            <span th:text="${receta.tipoCocina()}">Mexicana</span> • 
-            <span th:text="${receta.dificultad()}">Media</span>
+            <span th:text="${receta.tipoCocina()}"></span> •
+            <span th:text="${receta.dificultad()}"></span>
             <span th:if="${receta.tiempo() != null}"> • <span th:text="${receta.tiempo()} + ' min'"></span></span>
         </p>
         <div class="mt-auto">
-            <span class="badge bg-primary" th:text="${receta.pais()}">México</span>
+            <span class="badge bg-primary rounded-pill px-3 py-2" th:text="${receta.pais()}"></span>
         </div>
+    </div>
+
+    <div th:unless="${authenticated}"
+         class="card-body d-flex flex-column p-3">
+        <h5 class="card-title mb-2 text-primary fw-bold" th:text="${receta.nombre()}"></h5>
+        <p class="card-text text-muted small mb-2">
+            <span th:text="${receta.tipoCocina()}"></span> •
+            <span th:text="${receta.dificultad()}"></span>
+            <span th:if="${receta.tiempo() != null}"> • <span th:text="${receta.tiempo()} + ' min'"></span></span>
+        </p>
+        <div class="mt-auto">
+            <span class="badge bg-primary rounded-pill px-3 py-2" th:text="${receta.pais()}"></span>
+        </div>
+    </div>
+
+    <div th:unless="${authenticated}"
+         class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center bg-dark bg-opacity-50 rounded"
+         style="z-index: 10; cursor: pointer;"
+         th:onclick="|location.href='@{/login}'|">
+        <span class="text-white fw-bold">Inicia sesión para ver</span>
     </div>
 </div>
 
 <style>
 .card-clickable:hover {
     transform: translateY(-5px);
-    box-shadow: 0 12px 24px rgba(0,0,0,0.15) !important;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15) !important;
 }
 </style>

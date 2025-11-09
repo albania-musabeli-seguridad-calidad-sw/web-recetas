@@ -8,12 +8,13 @@ public record Receta(
         String pais,
         String dificultad,
         Integer tiempo,
-        String instrucciones
+        String instrucciones,
+        String fotoUrl
 ) {
     // Constructor sin instrucciones
     public Receta(Long id, String nombre, String tipoCocina, String ingredientes,
-                  String pais, String dificultad, Integer tiempo) {
-        this(id, nombre, tipoCocina, ingredientes, pais, dificultad, tiempo, "");
+                  String pais, String dificultad, Integer tiempo, String fotoUrl) {
+        this(id, nombre, tipoCocina, ingredientes, pais, dificultad, tiempo, "",fotoUrl);
     }
 
     // Constructor solo nombre y cocina  para menús
