@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
 <head>
     <meta charset="UTF-8">
     <title>Iniciar Sesión - Recetas del Mundo</title>
@@ -14,11 +14,13 @@
             justify-content: center;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
+
         .card {
             border: none;
             border-radius: 1rem;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
+
         .btn-primary {
             background-color: #3498db;
             border: none;
@@ -26,63 +28,68 @@
             font-weight: 600;
             padding: 0.75rem;
         }
+
         .btn-primary:hover {
             background-color: #2980b9;
         }
+
         .text-link {
             color: #3498db;
             font-weight: 500;
         }
+
         .text-link:hover {
             color: #2980b9;
             text-decoration: underline;
         }
     </style>
 </head>
+
 <body>
 
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-5 col-lg-4">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-5 col-lg-4">
 
-            <div class="card p-4">
+                <div class="card p-4">
 
-                <div class="text-center mb-4">
-                    <h3 class="fw-bold text-primary">Cocina con Cariño</h3>
-                    <p class="text-muted small">Inicia sesión para ver recetas exclusivas</p>
-                </div>
-
-                <div th:if="${error}" class="alert alert-danger small py-2" role="alert">
-                    <strong>Error:</strong> <span th:text="${error}"></span>
-                </div>
-
-                <div th:if="${param.logout}" class="alert alert-success small py-2" role="alert">
-                    Has cerrado sesión correctamente.
-                </div>
-
-                <form th:action="@{/login}" method="post">
-                    <div class="mb-3">
-                        <label for="username" class="form-label">Usuario</label>
-                        <input type="text" name="username" id="username" class="form-control" 
-                               placeholder="tu usuario" required autofocus />
+                    <div class="text-center mb-4">
+                        <h3 class="fw-bold text-primary">Cocina con Cariño</h3>
+                        <p class="text-muted small">Inicia sesión para ver recetas exclusivas</p>
                     </div>
 
-                    <div class="mb-3">
-                        <label for="password" class="form-label">Contraseña</label>
-                        <input type="password" name="password" id="password" class="form-control" 
-                               placeholder="••••••••" required />
+                    <div th:if="${error}" class="alert alert-danger small py-2" role="alert">
+                        <strong>Error:</strong> <span th:text="${error}"></span>
                     </div>
 
-                    <button type="submit" class="btn btn-primary w-100 mb-3">
-                        Iniciar Sesión
-                    </button>
-                </form>
+                    <div th:if="${param.logout}" class="alert alert-success small py-2" role="alert">
+                        Has cerrado sesión correctamente.
+                    </div>
+
+                    <form th:action="@{/login}" method="post">
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Usuario</label>
+                            <input type="text" name="username" id="username" class="form-control"
+                                placeholder="tu usuario" required autofocus />
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Contraseña</label>
+                            <input type="password" name="password" id="password" class="form-control"
+                                placeholder="••••••••" required />
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100 mb-3">
+                            Iniciar Sesión
+                        </button>
+                    </form>
+                </div>
+
             </div>
-
         </div>
     </div>
-</div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
