@@ -5,8 +5,9 @@
 
     <div th:if="${showImage} and ${receta.fotoUrl() != null}">
         <img th:src="@{${receta.fotoUrl()}}" 
-             class="card-img-top" 
-             alt="Imagen de la receta"
+             class="card-img-top"
+             th:alt="${'Foto de ' + receta.nombre()}"
+             alt=""
              style="height: 160px; object-fit: cover; border-radius: 0.5rem 0.5rem 0 0;">
     </div>
 
