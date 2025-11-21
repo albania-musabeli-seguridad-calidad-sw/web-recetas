@@ -16,7 +16,7 @@
     <div th:if="${authenticated}" th:onclick="|location.href='@{/receta/{id}(id=${receta.id()})}'|"
         class="card-body d-flex flex-column p-3 card-clickable" style="cursor: pointer;">
         <h5 class="card-title mb-2 text-primary fw-bold" th:text="${receta.nombre()} ?: 'Receta sin título'">
-            Nombre por defecto
+            Receta por defecto
         </h5>
         <p class="card-text text-muted small mb-2">
             <span th:text="${receta.tipoCocina()}"></span> •
@@ -29,7 +29,9 @@
     </div>
 
     <div th:unless="${authenticated}" class="card-body d-flex flex-column p-3">
-        <h5 class="card-title mb-2 text-primary fw-bold" th:text="${receta.nombre()} ?: 'Receta sin título'"></h5>
+        <h5 class="card-title mb-2 text-primary fw-bold" th:text="${receta.nombre()} ?: 'Receta sin título'">
+            Receta por defecto
+        </h5>
         <p class="card-text text-muted small mb-2">
             <span th:text="${receta.tipoCocina()}"></span> •
             <span th:text="${receta.dificultad()}"></span>
