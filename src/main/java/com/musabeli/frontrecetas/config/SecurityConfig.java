@@ -1,6 +1,5 @@
 package com.musabeli.frontrecetas.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -11,8 +10,11 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 public class SecurityConfig {
 
-    @Autowired
-    private JwtSessionFilter jwtSessionFilter;
+    private final JwtSessionFilter jwtSessionFilter;
+
+    public SecurityConfig(JwtSessionFilter jwtSessionFilter){
+        this.jwtSessionFilter = jwtSessionFilter;
+    }
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
